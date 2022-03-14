@@ -5,8 +5,8 @@
 
 mod parser;
 
-use parser::Parser;
 use parser::Loc;
+use parser::Parser;
 
 pub use parser::ParserError;
 pub use parser::ParserErrorWithLocation;
@@ -232,6 +232,21 @@ pub struct FileDescriptor {
     pub enums: Vec<Enumeration>,
     /// Extensions
     pub extensions: Vec<Extension>,
+    /// Service
+    pub service: Service,
+}
+
+#[derive(Debug, Default, Clone)]
+pub struct Service {
+    pub name: String,
+    pub methods: Vec<Method>,
+}
+
+#[derive(Debug, Default, Clone)]
+pub struct Method {
+    pub name: String,
+    pub input_name: String,
+    pub output_name: String,
 }
 
 impl FileDescriptor {
